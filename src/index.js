@@ -49,11 +49,11 @@ const pizzaData = [
 
 function App() {
   return (
-  <div className="container">
-    <Header />
-    <Menu />
-    <Footer />
-  </div>
+    <div className="container">
+      <Header />
+      <Menu />
+      <Footer />
+    </div>
   )
 }
 
@@ -63,12 +63,38 @@ function Header() {
   </header>
 }
 function Menu() {
-  return <main className="menu">
+  return (<main className="menu">
     <h2>Our Menu</h2>
-    <Pizza />
-    <Pizza />
-    <Pizza />
+    <Pizza
+      name="Pizza Spinaci"
+      ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+      price={10}
+      photoName="pizzas/spinaci.jpg"
+    />
+
+    <Pizza
+      name="Pizza Funghi"
+      ingredients="Tomato, mozarella, mushrooms, and onion"
+      price={12}
+      photoName="pizzas/funghi.jpg"
+    />
   </main>
+  )
+}
+
+function Pizza(props) {
+  return (
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name} />
+
+      <div>
+      <h3>{props.name}</h3>
+      <p>{props.ingredients}</p>
+      </div>
+
+      <span>{props.price + 3}</span>
+    </div>
+  )
 }
 function Footer() {
   const hour = new Date().getHours()
@@ -83,19 +109,13 @@ function Footer() {
   return <footer className="footer">{new Date().toLocaleDateString()}. We are currently open .</footer>
 }
 
-function Pizza() {
-  return (
-    <div>
-      <img src="pizzas/spinaci.jpg" alt="pizza spinaci" />
-      <h3>Pizza Spinaci</h3>
-      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
-    </div>
-  )
-}
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render
   (<React.StrictMode>
     <App />
   </React.StrictMode>)
+
+
 
