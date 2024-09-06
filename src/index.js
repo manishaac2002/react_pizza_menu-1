@@ -37,7 +37,29 @@ function Intro() {
 }
 
 function SkillList() {
-
+  return (
+    <main className="skill-list ">
+      <Skill 
+      skill="HTML + CSS" color="red"/>
+      <Skill 
+      skill="Java Script" color="blue"/>
+      <Skill 
+      skill="Web Design" color="yellow"/>
+      <Skill 
+      skill="Git and Github" color="purple"/>
+      <Skill 
+      skill="React" color="orange"/>
+      <Skill 
+      skill="Svelte" color="pink"/>
+    </main >
+  )
+}
+function Skill(props) {
+  return (
+    <div className="skill" style={{backgroundColor: props.color}}>
+        <span>{props.skill}</span>
+    </div>
+  )
 }
 
 const rootElement = document.getElementById("root");
@@ -47,4 +69,4 @@ root.render(
   <StrictMode>
     <App />
   </StrictMode>
-);
+)
