@@ -1,59 +1,52 @@
-import { useState } from 'react';
+import React, { useState } from 'react'
 
-const messages = [
-    "Learn React ⚛️",
-    "Apply for jobs 💼",
-    "Invest your new income 🤑",
-];
+const App = () => {
+    return (
+        <>
+
+            <Counter />
+        </>
+    )
+}
 
 
-export default function App() {
 
+
+
+function Counter() {
+    const [count, setCount] = useState(0)
     const [step, setStep] = useState(1)
-    const [isOpen, setIsOpen] = useState(true)
 
-
-
-    function handlePrevious() {
-        if (step > 1) setStep((s) => s - 1)
-    }
-    function handleNext() {
-        if (step < 3) setStep((s) => s + 1)
-        setStep((s) => s + 1)
-    }
+    const date = new Date("September 10 2024")
+    date.setDate(date.getDate() + count)
 
     return (
         <div>
-            <button className='close' onClick={() => setIsOpen((is) => !is)}>&times;</button>
+            <div>
+                <button onClick={() => setStep((s) => s - 1)}>-</button>
+                <span>Step : {step}</span>
+                <button onClick={() => setStep((s) => s + 1)}>+</button>
+            </div>
 
-            {isOpen &&
-                (
+            <div>
+                <button onClick={() => setCount((c) => c - step)}>-</button>
+                <span>Count: {count}</span>
+                <button onClick={() => setCount((c) => c + step)}>+</button>
+            </div>
 
-                    <div className="steps">
-
-                        <div className="numbers">
-                            <div className={step >= 1 ? 'active' : ''}>1</div>
-                            <div className={step >= 2 ? 'active' : ''}>2</div>
-                            <div className={step >= 3 ? 'active' : ''}>3</div>
-                        </div>
-
-                        <div><p className="message">Step {step} : {messages[step - 1]}</p></div>
-
-                        <div className="buttons">
-                            <button style={{ background: '#7950f2', color: 'white' }}
-                                onClick={handlePrevious}>
-                                Previous
-                            </button>
-                            <button style={{ background: '#7950f2', color: 'white' }}
-                                onClick={handleNext}
-                            >
-                                Next
-                            </button>
-                        </div>
-
-                    </div >
-                )
-            }
+            <p>
+                <span>
+                    {count === 0
+                        ? "Today is "
+                        : count > 0
+                            ? `${count} days from today is `
+                            : `${Math.abs(count)} days ago  was`}
+                </span>
+                {date.toDateString()}
+            </p>
         </div>
-    );
+    )
 }
+
+
+export default App
