@@ -3,14 +3,10 @@ import React, { useState } from 'react'
 const App = () => {
     return (
         <>
-
             <Counter />
         </>
     )
 }
-
-
-
 
 
 function Counter() {
